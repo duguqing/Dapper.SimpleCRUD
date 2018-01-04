@@ -184,7 +184,7 @@ var user = connection.GetList<User>("where age = 10 or Name like '%Smith%'");
 or with parameters
 
 ```csharp
-var encodeForLike = term => term.Replace("[", "[[]").Replace("%", "[%]");
+Func<string,string> encodeForLike = result => result.Replace("[", "[[]").Replace("%", "[%]"); 
 string likename = "%" + encodeForLike("Smith") + "%";
 var user = connection.GetList<User>("where age = @Age or Name like @Name", new {Age = 10, Name = likename});  
 ```
